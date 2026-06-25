@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Deletion Request - Peak</title>
+  <style>
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; color: #333; }
+    h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+    h2 { color: #34495e; margin-top: 2rem; }
+    .warning-box { background: #fff5f5; border-left: 5px solid #e53e3e; padding: 1.5rem; border-radius: 4px; margin: 1.5rem 0; }
+    .warning-title { color: #c53030; font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px; }
+    .steps { list-style: none; counter-reset: step; padding: 0; }
+    .steps li { position: relative; padding-left: 3.5rem; margin-bottom: 2rem; }
+    .steps li::before {
+      content: counter(step); counter-increment: step;
+      position: absolute; left: 0; top: 0; width: 2.5rem; height: 2.5rem;
+      background: #2c3e50; color: white; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-weight: bold;
+    }
+    .email-link { font-weight: bold; color: #3182ce; text-decoration: none; }
+    .ui-path { background: #f7fafc; padding: 2px 6px; border: 1px solid #edf2f7; border-radius: 4px; font-family: monospace; font-size: 0.9em; color: #4a5568; }
+    footer { margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 0.85rem; color: #718096; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <h1>Account Deletion Request</h1>
+  <p>At <strong>Peak</strong>, we value your privacy and your right to control your data. Below you will find the instructions on how to permanently delete your account and all associated data.</p>
+
+  <div class="warning-box">
+    <span class="warning-title">Permanent and Irreversible</span>
+    Deleting your account is <strong>permanent and cannot be reversed</strong>. Once processed, you will lose access to your profile, email history, company memberships, private chats, project data, and all earned skills. All personal information stored in our Firestore and Supabase databases will be wiped, subject to legal regulatory requirements.
+  </div>
+
+  <h2>Method 1: Direct In-App Deletion (Recommended)</h2>
+  <p>The fastest way to delete your data is directly through the Peak mobile application:</p>
+  <ul class="steps">
+    <li>
+      <strong>Open your Profile:</strong><br>
+      Tap your profile picture in the navigation widget container at the bottom of the screen.
+    </li>
+    <li>
+      <strong>Access Settings:</strong><br>
+      Click the <strong>Options button (three lines/dots)</strong> located in the top right corner of your profile screen.
+    </li>
+    <li>
+      <strong>Submit Deletion:</strong><br>
+      Scroll to the bottom of the page and click the <span class="ui-path">Delete Account</span> button. Confirm your choice when the final prompt appears.
+    </li>
+  </ul>
+
+  <h2>Method 2: Email Request</h2>
+  <p>If you no longer have the app installed, you may request deletion via email:</p>
+  <ul class="steps">
+    <li>
+      <strong>Contact Support:</strong><br>
+      Send an email to <a href="mailto:patrikfilip11@gmail.com" class="email-link">patrikfilip11@gmail.com</a>.
+    </li>
+    <li>
+      <strong>Required Information:</strong><br>
+      Please send the request from the email address associated with your Peak account. Include your <strong>Username</strong> and a clear statement that you wish for your account and all associated data to be permanently deleted.
+    </li>
+    <li>
+      <strong>Processing Time:</strong><br>
+      Our team will verify your identity and complete the deletion process within 30 days. You will receive a final confirmation email once the data has been purged.
+    </li>
+  </ul>
+
+  <footer>
+    &copy; 2026 Peak App Development. All rights reserved. <br>
+    This page is provided to comply with Google Play's Data Safety and Account Deletion requirements.
+  </footer>
+
+</body>
+</html>
