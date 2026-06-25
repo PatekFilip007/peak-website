@@ -1120,6 +1120,10 @@
     justify-content: space-between;
     align-items: center;
   }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
   .header-icon-link {
     display: block;
     cursor: pointer;
@@ -1130,38 +1134,25 @@
     display: block;
     object-fit: contain;
   }
-  .header-menu-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: block;
-  }
-  .menu-widget {
-    display: none;
-    flex-direction: column;
-    background-color: #FFFFFF;
-    border-top: 1px solid #E5E5EA;
-    width: 100%;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  }
-  .menu-widget.active {
+  .header-nav-buttons {
     display: flex;
+    gap: 16px;
+    margin-left: 20px; /* 20px to the right of app_icon */
   }
-  .menu-item {
-    padding: 14px 20px;
-    font-size: 15px;
+  .nav-btn {
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
     font-weight: 500;
     color: #1D1D1F;
     text-decoration: none;
-    border-bottom: 1px solid #F5F5F7;
-    transition: background-color 0.2s ease;
+    padding: 6px 8px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
   }
-  .menu-item:last-child {
-    border-bottom: none;
-  }
-  .menu-item:hover {
-    background-color: #F5F5F7;
+  .nav-btn:hover {
+    opacity: 0.7;
   }
 
   .new-hero-section {
@@ -1172,13 +1163,18 @@
   .peak-app-title {
     font-size: 16px;
     font-weight: 500;
-    color: #8E8E93;
+    color: #000000; /* black */
+    margin-top: 10px; /* 10px more margin-top */
     margin-bottom: 5px;
   }
   .centered-headline {
     font-size: clamp(28px, 6vw, 42px);
     font-weight: 700;
-    color: #1C1C1E;
+    background: linear-gradient(180deg, #005AD8 0%, #3395FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: #007AFF; /* Fallback */
     margin: 0 auto;
     padding: 0 20px;
     line-height: 1.15;
@@ -1193,7 +1189,7 @@
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    height: 240px;
+    height: 350px; /* fixed height of 350px */
     overflow: hidden;
     background-color: #E5E5EA;
   }
@@ -1219,10 +1215,10 @@
   .play-store-btn {
     height: 50px;
     border-radius: 25px;
-    background-color: #000000;
+    background-color: #007AFF !important; /* blue color #007AFF */
     width: 85%;
     max-width: 400px;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     font-size: 14px;
@@ -1232,11 +1228,20 @@
     transition: background-color 0.2s ease, transform 0.15s ease;
   }
   .play-store-btn:hover {
-    background-color: #1C1C1E;
+    background-color: #0066d6 !important;
     transform: scale(1.01);
   }
   .play-store-btn:active {
     transform: scale(0.99);
+  }
+  .play-store-btn .btn-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .play-store-btn .btn-text {
+    margin-left: 7px; /* 7px to the right of icon */
   }
 
   .highlights-section {
@@ -1260,9 +1265,16 @@
     overflow-x: auto;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .highlights-grid::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari and Opera */
   }
   .highlight-card {
     flex: 0 0 280px;
+    scroll-snap-align: start;
     background-color: #FFFFFF;
     border-radius: 25px;
     overflow: hidden;
@@ -1328,38 +1340,37 @@ window.PEAK_TWEAKS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 
-<!-- ─── NAV ─────────────────────────────────────────────── -->
 <nav class="sticky-header">
   <div class="header-inner">
-    <a href="home_page.html" class="header-icon-link">
-      <img src="../assets/app_icon.png" class="header-icon" alt="Peak Logo" />
-    </a>
-    <button class="header-menu-btn" id="menu-toggle" aria-label="Open Menu">
-      <img src="../assets/menu_black.png" class="header-icon" alt="Menu" />
-    </button>
-  </div>
-  
-  <!-- Vertical Menu Widget Container -->
-  <div class="menu-widget" id="menu-widget">
-    <a href="privacy_policy.html" class="menu-item">Privacy Policy</a>
-    <a href="terms_service.html" class="menu-item">Terms of Service</a>
-    <a href="user_deletion.html" class="menu-item">Account Deletion</a>
+    <div class="header-left">
+      <a href="home_page.html" class="header-icon-link">
+        <img src="../assets/app_icon.png" class="header-icon" alt="Peak Logo" />
+      </a>
+      <div class="header-nav-buttons">
+        <a href="privacy_policy.html" class="nav-btn">Privacy</a>
+        <a href="terms_service.html" class="nav-btn">Terms</a>
+        <a href="user_deletion.html" class="nav-btn">Account</a>
+      </div>
+    </div>
   </div>
 </nav>
 
 <!-- ─── HERO ────────────────────────────────────────────── -->
 <section class="new-hero-section">
   <div class="peak-app-title">Peak app</div>
-  <h1 class="centered-headline">Learn real skills. Build the proof.</h1>
+  <h1 class="centered-headline">True expertise</h1>
   
   <div class="full-width-image-placeholder">
-    <img src="../assets/google_1.jpg" alt="Peak App Screen" />
+    <img src="../assets/home.jpeg" alt="Peak App Screen" />
   </div>
   
   <div class="free-text">available for free</div>
   
   <div class="button-wrapper">
-    <a href="https://play.google.com/store/apps/details?id=com.patchamp.peak" class="play-store-btn">Download on Google Play</a>
+    <a href="https://play.google.com/store/apps/details?id=com.patchamp.peak" class="play-store-btn">
+      <img src="../assets/googleplay_white.png" class="btn-icon" alt="Google Play Icon" />
+      <span class="btn-text">Download on Google Play</span>
+    </a>
   </div>
   
   <div class="highlights-section">
@@ -1633,23 +1644,6 @@ window.PEAK_TWEAKS = /*EDITMODE-BEGIN*/{
     if (isIOS) os = 'ios';
     else if (isAndroid) os = 'android';
     document.body.setAttribute('data-os', os);
-  })();
-
-  // Menu widget toggle logic
-  (function initMenuToggle() {
-    const btn = document.getElementById('menu-toggle');
-    const widget = document.getElementById('menu-widget');
-    if (btn && widget) {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        widget.classList.toggle('active');
-      });
-      document.addEventListener('click', function(e) {
-        if (!widget.contains(e.target) && e.target !== btn) {
-          widget.classList.remove('active');
-        }
-      });
-    }
   })();
 
   // Render CTAs based on persisted ctaMode (with safety checks for missing elements)
