@@ -17,7 +17,7 @@
     --accent:    #007AFF;
     --bullet:    #8E8E93;
     --radius:    18px;
-    --maxw:      460px;
+    --maxw:      1180px;
     --font: Arial, Helvetica, sans-serif;
   }
 
@@ -37,88 +37,55 @@
     flex-direction: column;
   }
 
-  /* ── HEADER / NAV ──────────────────────────────────────── */
-  header.site {
+  /* ── STICKY HEADER ── */
+  .sticky-header {
     position: sticky;
     top: 0;
-    z-index: 50;
-    background: rgba(245,245,247,0.86);
-    backdrop-filter: saturate(180%) blur(14px);
-    -webkit-backdrop-filter: saturate(180%) blur(14px);
-    border-bottom: 1px solid var(--hairline);
+    z-index: 1000;
+    background-color: #FFFFFF !important;
+    border-bottom: none; /* removed horizontal separator line */
+    width: 100%;
   }
-  .nav-inner {
-    max-width: var(--maxw);
-    margin: 0 auto;
-    padding: 12px 16px;
+  .header-inner {
+    max-width: 100%;
+    padding: 5px 20px; /* changed vertical padding to 8px */
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    align-items: center;
   }
-  .brand {
+  .header-left {
     display: flex;
     align-items: center;
-    gap: 9px;
-    text-decoration: none;
-    color: var(--ink);
-    flex-shrink: 0;
   }
-  .brand .icon-wrap {
-    width: 34px; height: 34px;
-    border-radius: 9px;
-    overflow: hidden;
-    background: #FFFFFF;
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
+  .header-icon-link {
+    display: block;
+    cursor: pointer;
   }
-  .brand .icon-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .brand .icon-wrap .fallback {
-    font-family: var(--font);
-    font-weight: 700;
-    color: var(--accent);
-    font-size: 19px;
-    line-height: 1;
+  .header-icon {
+    width: 30px;
+    height: 30px;
+    display: block;
+    object-fit: contain;
   }
-  .brand .name {
-    font-family: var(--font);
-    font-weight: 700;
-    font-size: 19px;
-    letter-spacing: -0.01em;
-  }
-
-  nav.tabs {
+  .header-nav-buttons {
     display: flex;
-    gap: 2px;
-    background: #FFFFFF;
-    border: none;
-    border-radius: 11px;
-    padding: 2px;
+    gap: 16px;
+    margin-left: 20px; /* 20px to the right of app_icon */
   }
-  nav.tabs a {
-    font-family: var(--font);
-    font-size: 12.5px;
-    font-weight: 700;
-    color: var(--muted);
+  .nav-btn {
     background: transparent;
     border: none;
-    border-radius: 9px;
-    padding: 7px 11px;
-    cursor: pointer;
-    transition: color .2s ease, background .2s ease;
-    white-space: nowrap;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: normal;
+    color: #000000; /* changed color to #8E8E93 */
     text-decoration: none;
-    display: inline-block;
+    padding: 6px 8px;
+    cursor: pointer;
+    transition: color 0.2s ease;
   }
-  nav.tabs a:hover { color: var(--ink); }
-  nav.tabs a.active {
-    color: var(--accent);
-    background: #F5F5F7;
-  }
-  nav.tabs a:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+  .nav-btn:hover {
+    color: #000000; /* hover color to black */
   }
 
   /* ── MAIN ──────────────────────────────────────────────── */
@@ -127,7 +94,7 @@
     max-width: var(--maxw);
     width: 100%;
     margin: 0 auto;
-    padding: 34px 16px 64px;
+    padding: 34px 28px 64px;
   }
 
   .doc {
@@ -177,27 +144,29 @@
     margin: 18px 0 6px;
   }
 
-  p { color: var(--ink-soft); margin-bottom: 13px; font-size: 15px; }
+  /* Force all text in main and footer to be solid black */
+  main, main *, footer, footer * {
+    color: #000000 !important;
+  }
   ul { margin: 6px 0 15px; padding-left: 0; list-style: none; }
   li {
     position: relative;
     padding-left: 22px;
     margin-bottom: 9px;
-    color: var(--ink-soft);
     font-size: 15px;
   }
   li::before {
     content: "";
     position: absolute;
-    left: 4px;
-    top: 9px;
-    width: 7px; height: 7px;
+    left: 6px;
+    top: 10px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
-    background: var(--bullet);
+    background: #8E8E93 !important;
   }
-  li strong, p strong { color: var(--ink); font-weight: 700; }
-  a.link { color: var(--accent); font-weight: 700; text-decoration: none; }
-  a.link:hover { text-decoration: underline; }
+  a.link { font-weight: 700; text-decoration: underline; }
+  a.link:hover { text-decoration: none; }
 
   .callout {
     background: var(--surface);
@@ -267,24 +236,20 @@
 </head>
 <body>
 
-<!-- ─────────────── HEADER / NAVIGATION ─────────────── -->
-<header class="site">
-  <div class="nav-inner">
-    <a class="brand" href="home_page.html" aria-label="Peak home">
-      <span class="icon-wrap">
-        <img src="../assets/peak_logo.png" alt="Peak app icon"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
-        <span class="fallback" style="display:none;">P</span>
-      </span>
-      <span class="name">Peak</span>
-    </a>
-
-    <nav class="tabs" role="tablist" aria-label="Legal documents">
-      <a href="privacy_policy.html">Privacy Policy</a>
-      <a href="terms_service.html" class="active">Terms of Service</a>
-    </nav>
+<nav class="sticky-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <a href="home_page.html" class="header-icon-link">
+        <img src="../assets/app_icon.png" class="header-icon" alt="Peak Logo" />
+      </a>
+      <div class="header-nav-buttons">
+        <a href="privacy_policy.html" class="nav-btn">Privacy</a>
+        <a href="terms_service.html" class="nav-btn">Terms</a>
+        <a href="user_deletion.html" class="nav-btn">Account</a>
+      </div>
+    </div>
   </div>
-</header>
+</nav>
 
 <!-- ─────────────── MAIN CONTENT ─────────────── -->
 <main>
